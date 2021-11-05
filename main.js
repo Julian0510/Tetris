@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = 400;
 canvas.height = 700;
 
+let board = [];
 let x = 10;
 let y = 10;
 
