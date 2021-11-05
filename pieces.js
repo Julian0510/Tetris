@@ -37,4 +37,3 @@ class Shape {
         [0, 1, 0]
     ]
 }
-console.log(Shape.I);
