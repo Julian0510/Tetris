@@ -31,9 +31,15 @@ class Shape {
         [1, 1, 1]
     ]
     static I = [
-        [0, 1, 0],
-        [0, 1, 0],
-        [0, 1, 0],
-        [0, 1, 0]
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+        [0, 1, 0, 0]
     ]
+}
+var piece = {
+    currentShape: Shape.J,
+    nextShape: null,
+    x: 4,
+    y: -1
 }

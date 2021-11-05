@@ -4,19 +4,29 @@ canvas.width = 400;
 canvas.height = 700;
 
 let board = fillBoard([20, 10]);
-let x = 10;
-let y = 10;
+let x = 0;
+let y = 0;
 
 var looper = setInterval(mainLoop,500);
 
+
 function mainLoop(){
     clearBoard();
+    
+    merge(board, piece);
+    
 
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(x,y,10,10);
-    y+=10;
+    console.log(board);
 }
-
+function merge(board, piece){
+    piece.currentShape.forEach((row, y) => {
+        row.forEach((value, x) => {
+            if(value!=0){
+                board[y + piece.y][x + piece.x] = value;
+            }
+        });
+    });
+}
 function clearBoard(){
     ctx.fillStyle = 'white';
     ctx.fillRect(0,0,canvas.width,canvas.height);
