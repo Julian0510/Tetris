@@ -21,3 +21,11 @@ function clearBoard(){
     ctx.fillRect(0,0,canvas.width,canvas.height);
 
 }
+
+
+function fillBoard(dimensions){
+    let board = {};
+    for (var i = 0; i < dimensions[0]; ++i) {
+        board.push(dimensions.length == 1 ? 0 : zeros(dimensions.slice(1)));
+    }
+}
