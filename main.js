@@ -48,8 +48,15 @@ function display(board){
                         ctx.fillStyle = 'red';
                         break;
                 }
+                ctx.lineJoin = 'bevel';
                 ctx.fillRect(x*cWidth, y*cWidth, cWidth, cWidth);
-                ctx.fillStyle = 'black';
+                ctx.strokeStyle = 'black';
+                ctx.strokeRect(x*cWidth, y*cWidth, cWidth, cWidth);
+            }else{
+                ctx.shadowColor = 'red'
+                ctx.shadowBlue = 20;
+                ctx.lineJoin = 'bevel';
+                ctx.strokeStyle = 'rgb(240, 240, 240)'
                 ctx.strokeRect(x*cWidth, y*cWidth, cWidth, cWidth);
             }
         });
