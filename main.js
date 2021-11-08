@@ -2,25 +2,63 @@ const canvas = document.getElementById("tetrisCanvas");
 const ctx = canvas.getContext('2d');
 canvas.width = 400;
 canvas.height = 800;
-
+var piece = {
+    currentShape: Shape.I,
+    nextShape: null,
+    x: 4,
+    y: -3
+}
 let board = fillBoard([20, 10]);
+
+
 
 const cWidth = canvas.width/board.length*2;
 
 let x = 0;
 let y = 0;
 
-var looper = setInterval(mainLoop,500);
-
+var looper = setInterval(mainLoop,100);
+// clearBoard();
+// board[board.length-1].fill(1);
+// fall(board, piece);
+// display(board);
 
 function mainLoop(){
     clearBoard();
-    
-    merge(board, piece);
+
+    fall(board, piece);
+
     display(board);
-    
-    console.log(board);
+    // console.log(board);'
+    // console.log(piece.y);
 }
+
+function fall(board, piece){
+    unMerge(board, piece);
+    piece.y++;
+    if(itsClear(board, piece)){
+        merge(board, piece);
+    }else{
+        merge(board, piece);
+        piece.currentShape = Shape.randShape();
+        piece.y = -3;
+    }
+}
+function itsClear(board, piece){
+    let ret = 0;
+    piece.currentShape.forEach((row, y) => {
+        row.forEach((value, x) => {
+            if(value!=0){
+                if(board[y + piece.y + 1]){
+                    ret += board[y + piece.y + 1][x + piece.x];
+                }
+            }
+        });
+    });
+    if(ret !== 0){return false}
+    return (piece.y < board.length - 3);
+}
+
 function display(board){
     board.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -48,8 +86,15 @@ function display(board){
                         ctx.fillStyle = 'red';
                         break;
                 }
+                ctx.lineJoin = 'bevel';
                 ctx.fillRect(x*cWidth, y*cWidth, cWidth, cWidth);
-                ctx.fillStyle = 'black';
+                ctx.strokeStyle = 'black';
+                ctx.strokeRect(x*cWidth, y*cWidth, cWidth, cWidth);
+            }else{
+                ctx.shadowColor = 'red'
+                ctx.shadowBlue = 20;
+                ctx.lineJoin = 'bevel';
+                ctx.strokeStyle = 'rgb(240, 240, 240)'
                 ctx.strokeRect(x*cWidth, y*cWidth, cWidth, cWidth);
             }
         });
@@ -62,6 +107,17 @@ function merge(board, piece){
             if(value!=0){
                 if(board[y + piece.y]){
                     board[y + piece.y][x + piece.x] = value;
+                }
+            }
+        });
+    });
+}
+function unMerge(board, piece){
+    piece.currentShape.forEach((row, y) => {
+        row.forEach((value, x) => {
+            if(value!=0){
+                if(board[y + piece.y]){
+                    board[y + piece.y][x + piece.x] = 0;
                 }
             }
         });

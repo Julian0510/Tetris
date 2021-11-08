@@ -31,15 +31,20 @@ class Shape {
         [6, 6, 6]
     ]
     static I = [
-        [0, 7, 0, 0],
-        [0, 7, 0, 0],
-        [0, 7, 0, 0],
-        [0, 7, 0, 0]
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [7, 7, 7, 7],
+        [0, 0, 0, 0]
     ]
+    static randShape(){
+        let shapes = [Shape.J, Shape.L, Shape.O, Shape.S, Shape.Z, Shape.T, Shape.I];
+        return shapes[Math.floor(Math.random() * 7)];
+    }
 }
+
 var piece = {
-    currentShape: Shape.I,
+    currentShape: Shape.randShape(),
     nextShape: null,
     x: 4,
-    y: -1
+    y: -3
 }
