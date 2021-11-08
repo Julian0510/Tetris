@@ -5,6 +5,8 @@ canvas.height = 800;
 
 let board = fillBoard([20, 10]);
 
+
+
 const cWidth = canvas.width/board.length*2;
 
 let x = 0;
@@ -17,10 +19,13 @@ function mainLoop(){
     clearBoard();
     
     merge(board, piece);
-    display(board);
     
+    display(board);
     console.log(board);
 }
+
+
+
 function display(board){
     board.forEach((row, y) => {
         row.forEach((value, x) => {

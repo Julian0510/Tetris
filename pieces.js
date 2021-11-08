@@ -36,9 +36,14 @@ class Shape {
         [0, 7, 0, 0],
         [0, 7, 0, 0]
     ]
+    static randShape = function(){
+        let shapes = [Shape.J, Shape.L, Shape.O, Shape.S, Shape.Z, Shape.T, Shape.I];
+        return shapes[Math.floor(Math.random() * 7)];
+    }
 }
+
 var piece = {
-    currentShape: Shape.I,
+    currentShape: Shape.randShape(),
     nextShape: null,
     x: 4,
     y: -1

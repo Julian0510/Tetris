@@ -1,2 +1,2 @@
 # Tetris
-Tetris game in Python
+Tetris game in javascript
