@@ -36,7 +36,7 @@ class Shape {
         [7, 7, 7, 7],
         [0, 0, 0, 0]
     ]
-    static randShape = function(){
+    static randShape(){
         let shapes = [Shape.J, Shape.L, Shape.O, Shape.S, Shape.Z, Shape.T, Shape.I];
         return shapes[Math.floor(Math.random() * 7)];
     }

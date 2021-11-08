@@ -2,7 +2,12 @@ const canvas = document.getElementById("tetrisCanvas");
 const ctx = canvas.getContext('2d');
 canvas.width = 400;
 canvas.height = 800;
-
+var piece = {
+    currentShape: Shape.I,
+    nextShape: null,
+    x: 4,
+    y: -3
+}
 let board = fillBoard([20, 10]);
 
 
@@ -13,7 +18,10 @@ let x = 0;
 let y = 0;
 
 var looper = setInterval(mainLoop,500);
-
+// clearBoard();
+// board[board.length-1].fill(1);
+// fall(board, piece);
+// display(board);
 
 function mainLoop(){
     clearBoard();
@@ -21,15 +29,28 @@ function mainLoop(){
     fall(board, piece);
 
     display(board);
-    console.log(board);
+    // console.log(board);'
+    // console.log(piece.y);
 }
 
 function fall(board, piece){
-    unMerge(board, piece);
-    piece.y++;
-    merge(board, piece);
+    if(isNextClear(board, piece)){
+        unMerge(board, piece);
+        piece.y++;
+        merge(board, piece);
+    }else{
+        piece.currentShape = Shape.randShape();
+        piece.y = -3;
+    }
 }
-
+function isNextClear(board, piece){
+    for(let x = 0;x<piece.currentShape.length;x++){
+        for(let y = 0;y<piece.currentShape[x].length;y++){
+            
+        }
+    }
+    return piece.y < board.length - 3;
+}
 
 function display(board){
     board.forEach((row, y) => {
