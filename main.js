@@ -17,13 +17,18 @@ var looper = setInterval(mainLoop,500);
 
 function mainLoop(){
     clearBoard();
-    
-    merge(board, piece);
-    
+
+    fall(board, piece);
+
     display(board);
     console.log(board);
 }
 
+function fall(board, piece){
+    unMerge(board, piece);
+    piece.y++;
+    merge(board, piece);
+}
 
 
 function display(board){
@@ -74,6 +79,17 @@ function merge(board, piece){
             if(value!=0){
                 if(board[y + piece.y]){
                     board[y + piece.y][x + piece.x] = value;
+                }
+            }
+        });
+    });
+}
+function unMerge(board, piece){
+    piece.currentShape.forEach((row, y) => {
+        row.forEach((value, x) => {
+            if(value!=0){
+                if(board[y + piece.y]){
+                    board[y + piece.y][x + piece.x] = 0;
                 }
             }
         });

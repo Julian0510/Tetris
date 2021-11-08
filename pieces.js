@@ -31,10 +31,10 @@ class Shape {
         [6, 6, 6]
     ]
     static I = [
-        [0, 7, 0, 0],
-        [0, 7, 0, 0],
-        [0, 7, 0, 0],
-        [0, 7, 0, 0]
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [7, 7, 7, 7],
+        [0, 0, 0, 0]
     ]
     static randShape = function(){
         let shapes = [Shape.J, Shape.L, Shape.O, Shape.S, Shape.Z, Shape.T, Shape.I];
@@ -46,5 +46,5 @@ var piece = {
     currentShape: Shape.randShape(),
     nextShape: null,
     x: 4,
-    y: -1
+    y: -3
 }
