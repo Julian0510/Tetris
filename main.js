@@ -17,7 +17,7 @@ const cWidth = canvas.width/board.length*2;
 let x = 0;
 let y = 0;
 
-var looper = setInterval(mainLoop,500);
+var looper = setInterval(mainLoop,100);
 // clearBoard();
 // board[board.length-1].fill(1);
 // fall(board, piece);
@@ -34,22 +34,29 @@ function mainLoop(){
 }
 
 function fall(board, piece){
-    if(isNextClear(board, piece)){
-        unMerge(board, piece);
-        piece.y++;
+    unMerge(board, piece);
+    piece.y++;
+    if(itsClear(board, piece)){
         merge(board, piece);
     }else{
+        merge(board, piece);
         piece.currentShape = Shape.randShape();
         piece.y = -3;
     }
 }
-function isNextClear(board, piece){
-    for(let x = 0;x<piece.currentShape.length;x++){
-        for(let y = 0;y<piece.currentShape[x].length;y++){
-            
-        }
-    }
-    return piece.y < board.length - 3;
+function itsClear(board, piece){
+    let ret = 0;
+    piece.currentShape.forEach((row, y) => {
+        row.forEach((value, x) => {
+            if(value!=0){
+                if(board[y + piece.y + 1]){
+                    ret += board[y + piece.y + 1][x + piece.x];
+                }
+            }
+        });
+    });
+    if(ret !== 0){return false}
+    return (piece.y < board.length - 3);
 }
 
 function display(board){
