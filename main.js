@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = 400;
 canvas.height = 800;
 var piece = {
-    currentShape: Shape.I,
+    currentShape: Shape.randShape(),
     nextShape: null,
     x: 4,
     y: -3
@@ -135,3 +135,8 @@ function fillBoard(dimensions){
     }
     return board;
 }
+
+
+window.addEventListener('keydown', (e)=>{
+    console.log(e);
+})
