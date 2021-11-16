@@ -18,6 +18,7 @@ let x = 0;
 let y = 0;
 
 var looper = setInterval(mainLoop,500);
+var looper2 = setInterval(fasterLoop, 10);
 // clearBoard();
 // board[board.length-1].fill(1);
 // fall(board, piece);
@@ -28,10 +29,15 @@ function mainLoop(){
 
     fall(board, piece);
 
-    display(board);
+    
     // console.log(board);'
     // console.log(piece.y);
 }
+function fasterLoop(){
+    clearBoard();
+    display(board);
+}
+
 
 function fall(board, piece){
     unMerge(board, piece);
@@ -166,7 +172,7 @@ window.addEventListener('keydown', (e)=>{
             }
             break;
         case keys[3]||keys[3+4]:
-
+            fall(board, piece);
             break;
 
     }
