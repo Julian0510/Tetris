@@ -48,6 +48,7 @@ function fall(board, piece){
         merge(board, piece);
         piece.currentShape = Shape.randShape();
         piece.y = -3;
+        piece.x = 4;
     }
 }
 function itsClear(board, piece){
