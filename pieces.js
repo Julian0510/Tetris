@@ -42,9 +42,4 @@ class Shape {
     }
 }
 
-var piece = {
-    currentShape: Shape.randShape(),
-    nextShape: null,
-    x: 4,
-    y: -3
-}
+

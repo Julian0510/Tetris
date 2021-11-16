@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = 400;
 canvas.height = 800;
 var piece = {
-    currentShape: Shape.I,
+    currentShape: Shape.randShape(),
     nextShape: null,
     x: 4,
     y: -3
@@ -17,7 +17,8 @@ const cWidth = canvas.width/board.length*2;
 let x = 0;
 let y = 0;
 
-var looper = setInterval(mainLoop,100);
+var looper = setInterval(mainLoop,500);
+var looper2 = setInterval(fasterLoop, 10);
 // clearBoard();
 // board[board.length-1].fill(1);
 // fall(board, piece);
@@ -28,10 +29,15 @@ function mainLoop(){
 
     fall(board, piece);
 
-    display(board);
+    
     // console.log(board);'
     // console.log(piece.y);
 }
+function fasterLoop(){
+    clearBoard();
+    display(board);
+}
+
 
 function fall(board, piece){
     unMerge(board, piece);
@@ -135,3 +141,40 @@ function fillBoard(dimensions){
     }
     return board;
 }
+            //w   a   s   d   up  lf  ri   do
+const keys = ['w', 'a', 'd', 's',  'ArrowUp', 'ArrowLeft', 'ArrowRight',  'ArrowDown'];
+window.addEventListener('keydown', (e)=>{
+    switch(e.key){
+        case keys[0]||keys[0+4]:
+
+            break;
+        case keys[1]||keys[1+4]:
+            unMerge(board, piece);
+            piece.x--;
+            if(itsClear(board, piece)){
+                merge(board, piece);
+            }else{
+                merge(board, piece);
+                piece.currentShape = Shape.randShape();
+                piece.y = -3;
+            }
+            
+            break;
+        case keys[2]||keys[2+4]:
+            unMerge(board, piece);
+            piece.x++;
+            if(itsClear(board, piece)){
+                merge(board, piece);
+            }else{
+                merge(board, piece);
+                piece.currentShape = Shape.randShape();
+                piece.y = -3;
+            }
+            break;
+        case keys[3]||keys[3+4]:
+            fall(board, piece);
+            break;
+
+    }
+});
+
